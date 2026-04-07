@@ -1,0 +1,29 @@
+[
+  {
+    "id": "2",
+    "name": "Satish",
+    "role": "Faculty Advisor",
+    "photo": "/images/team/sathish.jpg",
+    "linkedin": "https://linkedin.com",
+    "email": "sathish@hitam.org",
+    "advisor": true
+  },
+  {
+    "id": "1",
+    "name": "Santhosh",
+    "role": "Faculty Co-Advisor",
+    "photo": "/images/team/santhosh.jpg",
+    "linkedin": "https://linkedin.com",
+    "email": "santhosh@hitam.org",
+    "advisor": true
+  },
+  {
+    "id": "3",
+    "name": "Student President",
+    "role": "President",
+    "photo": "/images/team/president.jpg",
+    "linkedin": "https://linkedin.com",
+    "email": "president@hitam.org",
+    "advisor": false
+  }
+]

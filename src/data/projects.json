@@ -1,0 +1,158 @@
+[
+  {
+    "id": "solar-node",
+    "title": "Smart Decentralized Solar Energy Management",
+    "teaser": "ESP32-based decentralized energy nodes maximizing solar capture via automated tracking.",
+    "techStack": ["ESP32", "C++", "IoT", "FreeRTOS"],
+    "problem": "Centralized solar grids suffer from massive transmission losses and lack localized optimization. When a single central inverter fails, entire residential blocks lose power generation capability.",
+    "solution": "We designed an ESP32-based decentralized node system capable of independently tracking solar vectors and directly routing power to localized batteries, reducing transmission loss by 18%.",
+    "techSpecs": {
+      "controller": "ESP32 WROOM-32",
+      "sensors": "LDR Arrays, INA219 Current Sensor",
+      "protocol": "MQTT over WiFi"
+    },
+    "milestones": [
+      {
+        "title": "Dual-Axis Actuation",
+        "desc": "Built and tested the stepper motor assembly for the solar cradle.",
+        "completed": true
+      },
+      {
+        "title": "Node Connectivity",
+        "desc": "Programmed the ESP32 to publish localized telemetry to an MQTT broker.",
+        "completed": true
+      },
+      {
+        "title": "Grid Integration Simulator",
+        "desc": "Connecting multiple nodes together to simulate dynamic power diversion.",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "drone-aqi",
+    "title": "Drone-Based AQI Monitoring",
+    "teaser": "Geo-tagged 3D environmental mapping using customized hexacopters.",
+    "techStack": ["Python", "Pixhawk", "MAVLink", "ROS"],
+    "problem": "Standard AQI stations are static and remain at ground level, severely limiting analysis of vertical pollution distribution and failing to track transient smog clouds.",
+    "solution": "A custom hexacopter carrying particulate and gas payload sensors that flies automated 3D grid patterns to generate volumetric models of local air pollution.",
+    "techSpecs": {
+      "controller": "Pixhawk 4",
+      "sensors": "Nova SDS011, MQ-135, GPS",
+      "protocol": "4G LTE Telemetry"
+    },
+    "milestones": [
+      {
+        "title": "Hexacopter Assembly",
+        "desc": "Calibrated the flight controller and balanced the drone frame.",
+        "completed": true
+      },
+      {
+        "title": "Sensor Suite Integration",
+        "desc": "I2C based multiplexing for 5 unique gas and particulate sensors.",
+        "completed": true
+      },
+      {
+        "title": "Automated Survey Flights",
+        "desc": "Autonomous way-point surveying over industrial boundaries.",
+        "completed": true
+      },
+      {
+        "title": "3D Topographic Modeling",
+        "desc": "Translating telemetry logs into a live dashboard mesh.",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "audio-guidance",
+    "title": "Audio Guidance for Visually Impaired",
+    "teaser": "Smart Glasses featuring YOLO spatial detection and <200ms low-latency audio feedback.",
+    "techStack": ["Raspberry Pi", "OpenCV", "YOLOv8", "Python"],
+    "problem": "Traditional walking canes only detect objects immediately on the ground constraint to arm's length, failing to warn users of overhead obstacles or distant approaching hazards.",
+    "solution": "A wearable 'Smart Glasses' frame computing depth and object recognition live, conveying spatial coordinates directly as spatial audio pings to the user via bone-conduction.",
+    "techSpecs": {
+      "controller": "Raspberry Pi 4",
+      "sensors": "Stereo Camera Module v2, Ultrasonic",
+      "protocol": "Bluetooth 5.0 Audio"
+    },
+    "milestones": [
+      {
+        "title": "Machine Learning Pipeline",
+        "desc": "Compressed YOLOv8 execution to hit 30FPS on edge computing.",
+        "completed": true
+      },
+      {
+        "title": "Hardware Miniaturization",
+        "desc": "Designed a custom PCB allowing the rig to fit within a standard sunglass arm.",
+        "completed": true
+      },
+      {
+        "title": "Clinical Trials",
+        "desc": "Partnering with local NGOs for real-world usability testing.",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "sign-language",
+    "title": "Sign Language to Vocalizer",
+    "teaser": "Wearable flex-sensor glove paired with a gesture-to-speech ML model.",
+    "techStack": ["Arduino", "ML", "Python", "React Native"],
+    "problem": "Communication barriers exist between sign language users and non-signers in dynamic public spaces requiring immediate interactions (e.g. at a grocery store checkout).",
+    "solution": "A lightweight glove tracking finger bend mapping to a neural network that translates gestures into real-time synthesized speech via a paired mobile application.",
+    "techSpecs": {
+      "controller": "Arduino Nano BLE",
+      "sensors": "Spectra Symbol Flex Sensors, MPU6050 IMU",
+      "protocol": "BLE (Bluetooth Low Energy)"
+    },
+    "milestones": [
+      {
+        "title": "IMU + Flex Calibration",
+        "desc": "Reliable data streaming of raw finger curl and wrist pitch coordinates.",
+        "completed": true
+      },
+      {
+        "title": "Model Training",
+        "desc": "Gathering gesture datasets for 50 common ASL words.",
+        "completed": true
+      },
+      {
+        "title": "Mobile App V1",
+        "desc": "Deploying the vocalizer text-to-speech companion app.",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "water-monitoring",
+    "title": "IoT Water Monitoring & Segregation",
+    "parsed": true,
+    "teaser": "Real-time pH/TDS sensing driving heavy-duty automated solenoid valves.",
+    "techStack": ["ESP8266", "Node-RED", "C++", "IoT"],
+    "problem": "Campus wastewater and rainwater are often improperly mixed, leading to chemical contamination of natural runoff systems.",
+    "solution": "An automated pipeline junction featuring embedded probes calculating contamination vectors, actively diverting clean water to groundskeeping and contaminated water to filtration.",
+    "techSpecs": {
+      "controller": "ESP8266 NodeMCU",
+      "sensors": "Industrial pH Probe, TDS Meter, Flow Sensor",
+      "protocol": "LoRaWAN"
+    },
+    "milestones": [
+      {
+        "title": "Valve Automation",
+        "desc": "Successfully driving 12V high-pressure solenoid valves via solid-state relays.",
+        "completed": true
+      },
+      {
+        "title": "Sensor Calibration",
+        "desc": "Calibrating analog pH readings against chemical buffer solutions.",
+        "completed": true
+      },
+      {
+        "title": "Dashboard Telemetry",
+        "desc": "Building a Node-RED interface for campus maintenance crews.",
+        "completed": true
+      }
+    ]
+  }
+]

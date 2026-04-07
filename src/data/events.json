@@ -1,0 +1,93 @@
+[
+  {
+    "id": "1",
+    "title": "FRESHERS",
+    "date": "2026-04-10",
+    "description": "Welcoming the incoming batch to the chapter.",
+    "poster": "/images/events/Ignite.jpeg"
+  },
+  {
+    "id": "2",
+    "title": "SDG INTRODUCTION",
+    "date": "2026-04-24",
+    "description": "Introduction to Sustainable Development Goals and our approach."
+  },
+  {
+    "id": "3",
+    "title": "DT EXPO",
+    "date": "2026-05-01",
+    "description": "Design Thinking exhibition showcasing student projects."
+  },
+  {
+    "id": "4",
+    "title": "NGO VISIT",
+    "date": "2026-06-19",
+    "description": "Visit to local NGOs to understand grassroots challenges."
+  },
+  {
+    "id": "5",
+    "title": "INDUSTRIAL VISIT",
+    "date": "2026-06-26",
+    "description": "Field visit to understand practical industrial applications."
+  },
+  {
+    "id": "6",
+    "title": "SYNERGY",
+    "date": "2026-07-04",
+    "description": "Interactive session fostering teamwork and collaborative problem-solving."
+  },
+  {
+    "id": "7",
+    "title": "INDUSTRIAL VISIT",
+    "date": "2026-08-14",
+    "description": "Continued exposure to industry practices and operations."
+  },
+  {
+    "id": "8",
+    "title": "ZERO TO PAPER RESEARCH WORKSHOP",
+    "date": "2026-09-11",
+    "description": "Comprehensive guide to writing and publishing research papers."
+  },
+  {
+    "id": "9",
+    "title": "PAPER PRESENTATION",
+    "date": "2026-09-25",
+    "description": "Students presenting their research and project findings."
+  },
+  {
+    "id": "10",
+    "title": "AI FOR EVERYONE WORKSHOP",
+    "date": "2026-10-09",
+    "description": "Democratizing AI knowledge and hands-on applications."
+  },
+  {
+    "id": "11",
+    "title": "INNOFIESTA-2K26",
+    "date": "2026-11-13",
+    "description": "Next edition of the flagship multidisciplinary college fest."
+  },
+  {
+    "id": "12",
+    "title": "ALUMNI INTERACTION",
+    "date": "2026-12-05",
+    "description": "Engaging with chapter alumni to share insights and networking."
+  },
+  {
+    "id": "13",
+    "title": "IASF-2027",
+    "date": "2027-01-07",
+    "description": "Participation in the International Action Student Forum 2027."
+  },
+  {
+    "id": "14",
+    "title": "IUCEE-EWB HITAM CHAPTER FAREWELL",
+    "date": "2027-01-29",
+    "description": "Farewell ceremony celebrating the graduating chapter members."
+  },
+  {
+    "id": "15",
+    "title": "INVESTITURE CEREMONY",
+    "date": "2027-02-26",
+    "description": "Handover of leadership and inducting the new core team."
+  }
+]
