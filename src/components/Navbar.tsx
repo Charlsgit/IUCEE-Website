@@ -8,6 +8,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -27,10 +34,12 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/events", label: "Events" },
+    { href: "/",        label: "Home" },
+    { href: "/about",   label: "About" },
+    { href: "/team",    label: "Our Team" },
+    { href: "/events",  label: "Upcoming Events" },
     { href: "/projects", label: "Projects" },
+    { href: "/history", label: "Our History" },
   ];
 
   return (
@@ -38,43 +47,31 @@ export default function Navbar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none transition-all duration-300"
+        className={`fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none transition-all duration-300 ${montserrat.className}`}
       >
         <div 
           className={`
             pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
             ${isScrolled 
-              ? "w-[95%] md:w-[85%] lg:max-w-5xl h-16 mt-4 bg-white/60 backdrop-blur-xl border border-zinc-200/50 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.05)] px-6 dark:bg-black/60 dark:border-white/10 dark:shadow-black/20" 
-              : "w-full h-24 bg-white/30 backdrop-blur-md border-b border-zinc-200/50 px-6 md:px-12 dark:bg-black/20 dark:border-white/10"
+              ? "w-[98%] md:w-[95%] lg:max-w-[70rem] h-[72px] mt-4 bg-white/60 backdrop-blur-xl border border-zinc-200/50 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.05)] px-6 dark:bg-black/60 dark:border-white/10 dark:shadow-black/20" 
+              : "w-full h-28 bg-white/30 backdrop-blur-md border-b border-zinc-200/50 px-6 md:px-12 dark:bg-black/20 dark:border-white/10"
             }
           `}
         >
           {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-3 sm:gap-4 group z-20 shrink-0">
-            <div className="flex items-center">
-              <div className={`relative transition-all duration-500 ${isScrolled ? 'w-10 h-10' : 'w-14 h-14'}`}>
-                <Image 
-                  src="/images/Untitled-design-54.webp"
-                  alt="HITAM Logo"
-                  fill
-                  className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.15)] transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="w-[1px] h-6 bg-white/10 mx-3 sm:mx-4"></div>
-              <div className={`relative transition-all duration-500 ${isScrolled ? 'w-10 h-10' : 'w-14 h-14'}`}>
-                <Image 
-                  src="/images/Untitled-design-55.webp"
-                  alt="IUCEE-EWB Logo"
-                  fill
-                  className="object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.15)] transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
+          <Link href="/" className="flex items-center gap-3.5 group z-20 shrink-0">
+            <div className={`relative overflow-hidden rounded-full border-2 border-transparent group-hover:border-emerald-500/50 ring-2 ring-zinc-200 dark:ring-white/10 transition-all duration-300 shadow-sm bg-white ${isScrolled ? "w-11 h-11" : "w-14 h-14"}`}>
+              <Image 
+                src="/images/logos/LOGO.jpg" 
+                alt="IUCEE EWB HITAM Logo" 
+                fill 
+                className="object-cover"
+                sizes="56px"
+              />
             </div>
-            {!isScrolled && (
-              <span className="font-bold text-zinc-900 tracking-wide drop-shadow-sm group-hover:text-emerald-600 transition-colors hidden xl:block text-lg dark:text-white">
-                IUCEE-EWB
-              </span>
-            )}
+            <span className="font-extrabold text-zinc-900 tracking-tight drop-shadow-sm group-hover:text-emerald-600 transition-colors text-sm sm:text-xl dark:text-white pb-0.5">
+              IUCEE EWB HITAM
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -86,14 +83,14 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`
-                    relative px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300
-                    ${isActive ? "text-zinc-900 dark:text-white" : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white dark:text-zinc-400"}
+                    relative px-4 py-2 text-sm font-semibold rounded-full flex items-center transition-colors duration-300
+                    ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white dark:text-zinc-400"}
                   `}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="navbar-active-pill"
-                      className="absolute inset-0 bg-zinc-900/5 rounded-full"
+                      className="absolute inset-0 bg-emerald-500/10 dark:bg-emerald-500/10 rounded-full"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}

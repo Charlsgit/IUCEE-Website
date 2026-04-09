@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Leaf, Users, Lightbulb, CheckCircle2, Rocket, Handshake, TrendingUp, Zap, X } from "lucide-react";
 import projectsData from "@/data/projects.json";
-
+import BorderGlow from "@/components/BorderGlow";
 
 // Reusable scroll reveal
 function Reveal({
@@ -144,12 +144,12 @@ function ProjectCard({
   );
 }
 
-function StatBlock({ value, label, sub }: { value: string; label: string; sub: string }) {
+function StatBlock({ value, label, sub, className = "" }: { value: string; label: string; sub: string; className?: string }) {
   return (
-    <div className="group flex flex-col p-8 rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-600/30 transition-all duration-300 cursor-default dark:bg-[#0a0a0a] dark:border-white/10 dark:hover:border-emerald-500/30">
-      <span className="text-5xl md:text-6xl font-black text-zinc-900 tracking-tighter mb-2 dark:text-white">{value}</span>
-      <span className="text-sm font-semibold text-zinc-900 mb-1 dark:text-white">{label}</span>
-      <span className="text-xs text-zinc-500 dark:text-zinc-400">{sub}</span>
+    <div className={`group flex flex-col justify-end p-5 rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-600/30 transition-all duration-300 cursor-default dark:bg-[#0a0a0a] dark:border-white/10 dark:hover:border-emerald-500/30 ${className}`}>
+      <span className="text-3xl font-black text-zinc-900 tracking-tighter mb-1.5 dark:text-white">{value}</span>
+      <span className="text-xs font-semibold text-zinc-900 mb-1 leading-snug dark:text-white">{label}</span>
+      <span className="text-[10px] text-zinc-500 leading-snug dark:text-zinc-400">{sub}</span>
     </div>
   );
 }
@@ -166,102 +166,148 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070"
-            alt="Engineers at work"
-            fill
-            className="object-cover opacity-[0.1] grayscale"
-            priority
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(30,86,49,0.08),transparent)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white" />
+        <div className="absolute inset-0 z-0 bg-[#fafafa] dark:bg-[#030303]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_-20%,rgba(16,185,129,0.12),transparent)] pointer-events-none" />
         </div>
 
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        <div className="relative z-10 container mx-auto px-6 max-w-4xl text-center">
+        <div className="relative z-10 container mx-auto px-6 max-w-5xl text-center">
           <AnimatePresence>
             {mounted && (
-              <>
+              <div className="flex flex-col items-center font-sans">
+                {/* Modern Glassmorphic Logos */}
                 <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="mb-8 flex justify-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                  className="mb-20 mt-4 flex flex-col items-center justify-center w-full"
                 >
-                  <span className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 text-[11px] font-semibold uppercase tracking-[0.14em]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    HITAM Student Chapter
-                  </span>
+                  <div className="flex items-center justify-center gap-3 sm:gap-10 w-full max-w-4xl">
+                    <div className="relative flex items-center justify-center flex-shrink-0 h-32 w-32 sm:h-56 sm:w-56 bg-white/20 dark:bg-black/30 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] p-2 sm:p-4 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1">
+                      <div className="relative w-full h-full rounded-full overflow-hidden bg-[#5bab47]">
+                        <Image src="/images/Untitled-design-54.webp" alt="HITAM" fill className="object-contain scale-[1.05] object-top" />
+                      </div>
+                    </div>
+                    <X className="w-6 h-6 sm:w-10 sm:h-10 text-slate-400 opacity-80 flex-shrink-0" strokeWidth={1} />
+                    <div className="relative flex items-center justify-center flex-shrink-0 h-32 w-32 sm:h-56 sm:w-56 bg-white/20 dark:bg-black/30 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] p-2 sm:p-4 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1">
+                      <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
+                        <Image src="/images/Untitled-design-55.webp" alt="IUCEE-EWB" fill className="object-contain scale-[1.05] object-top" />
+                      </div>
+                    </div>
+                  </div>
                 </motion.div>
+
+
 
                 <motion.h1
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-6xl sm:text-7xl md:text-[84px] font-black text-zinc-900 tracking-[-0.03em] leading-[1.04] mb-7 dark:text-white"
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-5xl sm:text-6xl md:text-7xl font-[800] text-zinc-900 tracking-tight leading-[1.05] mb-10 dark:text-white"
                 >
-                  Engineering for<br className="hidden sm:block" />{" "}
-                  <span className="text-emerald-600 relative">
+                  Engineering for <br className="hidden sm:block" />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-br from-[#059669] to-[#34d399]">
                     Communities
-                    <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-emerald-800/60 rounded" />
                   </span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-base md:text-lg text-zinc-600 max-w-xl mx-auto leading-relaxed mb-10 font-light dark:text-zinc-400"
+                  transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-lg md:text-xl text-[#4b5563] max-w-2xl mx-auto leading-[1.7] mb-12 font-normal dark:text-zinc-400"
                 >
-                  We're a student chapter at HITAM focused on one thing — building engineering solutions that actually get deployed and used by people who need them.
+                  We're a student chapter focused on one thing — building engineering solutions that actually get deployed and used by people who need them.
                 </motion.p>
 
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col sm:flex-row items-center justify-center gap-3"
+                  transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
                 >
                   <Link
                     href="/events"
-                    className="group flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white text-sm font-semibold hover:bg-zinc-800 transition-colors duration-200 w-full sm:w-auto dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+                    className="group flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-emerald-600 text-white text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-emerald-500 shadow-lg shadow-emerald-900/20 w-full sm:w-auto dark:shadow-emerald-500/10 hover:-translate-y-[2px]"
                   >
                     See our work
-                    <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <Link
                     href="/about"
-                    className="flex items-center justify-center px-6 py-3 rounded-full bg-white border border-zinc-200 text-zinc-900 text-sm font-medium hover:bg-zinc-50 transition-colors duration-200 w-full sm:w-auto dark:bg-[#0a0a0a] dark:border-white/10 dark:text-zinc-300 dark:hover:bg-[#111]"
+                    className="flex items-center justify-center px-8 py-3.5 rounded-full bg-transparent border-2 border-zinc-200 text-zinc-900 text-sm font-semibold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-zinc-300 hover:bg-zinc-50 hover:-translate-y-[2px] w-full sm:w-auto dark:border-white/10 dark:text-white dark:hover:border-white/20 dark:hover:bg-white/5"
                   >
                     About us
                   </Link>
                 </motion.div>
-              </>
+              </div>
             )}
           </AnimatePresence>
+        </div>
+      </section>
 
-          {/* Partner logos */}
-          <Reveal delay={700} className="mt-28 pb-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500 mb-7">Affiliated with</p>
-            <div className="flex justify-center items-center gap-12">
-              <div className="relative h-16 w-36">
-                <Image src="/images/Untitled-design-54.webp" alt="HITAM" fill className="object-contain" />
+      {/* MISSION & VISION */}
+      <section className="py-24 border-t border-zinc-200 dark:border-white/10">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Reveal delay={0}>
+              <div className="[--card-bg:#ffffff] dark:[--card-bg:#060010] h-full rounded-[28px] bg-white dark:bg-[#060010]">
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="var(--card-bg)"
+                borderRadius={28}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#059669', '#10b981', '#34d399']}
+                className="h-full"
+              >
+                <div className="p-10 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-3xl pointer-events-none" />
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 shadow-sm">
+                      <Rocket size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-4 tracking-tight">Our Mission</h3>
+                    <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      To bridge the gap between engineering theory and real-world application. We build sustainable, community-driven hardware solutions that create tangible, lasting impact beyond the classroom.
+                    </p>
+                  </div>
+                </div>
+              </BorderGlow>
               </div>
-              <X className="text-zinc-300 dark:text-zinc-600" size={24} strokeWidth={1.5} />
-              <div className="relative h-16 w-36">
-                <Image src="/images/Untitled-design-55.webp" alt="IUCEE-EWB" fill className="object-contain" />
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="[--card-bg:#ffffff] dark:[--card-bg:#060010] h-full rounded-[28px] bg-white dark:bg-[#060010]">
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="40 80 80"
+                backgroundColor="var(--card-bg)"
+                borderRadius={28}
+                glowRadius={40}
+                glowIntensity={1}
+                coneSpread={25}
+                animated={false}
+                colors={['#34d399', '#10b981', '#059669']}
+                className="h-full"
+              >
+                <div className="p-10 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 blur-3xl pointer-events-none" />
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-8 shadow-sm">
+                      <Lightbulb size={20} strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-4 tracking-tight">Our Vision</h3>
+                    <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      To shape a generation of engineers who don't just pass coursework, but actively solve localized problems and deploy resilient systems that endure and serve communities.
+                    </p>
+                  </div>
+                </div>
+              </BorderGlow>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -278,42 +324,6 @@ export default function Home() {
             <Reveal delay={60}><FeatureCard title="Durable hardware" description="Everything we build has to survive real conditions and keep running without us around to fix it constantly." icon={Leaf} /></Reveal>
             <Reveal delay={130}><FeatureCard title="Community input first" description="We spend time with the people a project will affect before we write a single line of code or spec." icon={Users} /></Reveal>
             <Reveal delay={200}><FeatureCard title="Student ownership" description="Teams own outcomes end-to-end — from initial scoping through field handoff. Advisors guide, students ship." icon={Lightbulb} /></Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* MISSION & VISION */}
-      <section className="py-24 border-t border-zinc-200 dark:border-white/10">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Reveal delay={0}>
-              <div className="h-full rounded-3xl border border-zinc-200 bg-zinc-50 p-10 relative overflow-hidden group hover:border-zinc-300 transition-colors dark:bg-[#0a0a0a] dark:border-white/10 dark:hover:border-emerald-500/30">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-200/20 blur-3xl pointer-events-none group-hover:bg-emerald-300/30 transition-colors dark:bg-emerald-900/20 dark:group-hover:bg-emerald-800/30" />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-emerald-600 mb-8 shadow-sm dark:bg-[#111] dark:border-white/10 dark:text-emerald-500">
-                    <Rocket size={20} strokeWidth={2} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-zinc-900 mb-4 tracking-tight dark:text-white">Our Mission</h3>
-                  <p className="text-zinc-600 leading-relaxed dark:text-zinc-400">
-                    To bridge the gap between engineering theory and real-world application. We build sustainable, community-driven hardware solutions that create tangible, lasting impact beyond the classroom.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="h-full rounded-3xl border border-zinc-200 bg-zinc-50 p-10 relative overflow-hidden group hover:border-zinc-300 transition-colors dark:bg-[#0a0a0a] dark:border-white/10 dark:hover:border-emerald-500/30">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-200/20 blur-3xl pointer-events-none group-hover:bg-emerald-300/30 transition-colors dark:bg-emerald-900/20 dark:group-hover:bg-emerald-800/30" />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-emerald-600 mb-8 shadow-sm dark:bg-[#111] dark:border-white/10 dark:text-emerald-500">
-                    <Lightbulb size={20} strokeWidth={2} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-zinc-900 mb-4 tracking-tight dark:text-white">Our Vision</h3>
-                  <p className="text-zinc-600 leading-relaxed dark:text-zinc-400">
-                    To shape a generation of engineers who don't just pass coursework, but actively solve localized problems and deploy resilient systems that endure and serve communities.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -346,12 +356,12 @@ export default function Home() {
                   What does IUCEE-EWB actually mean?
                 </h2>
               </div>
-              <div className="space-y-5 text-sm text-zinc-400 leading-relaxed">
+              <div className="space-y-5 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 <p>
-                  <strong className="text-zinc-200 font-semibold">IUCEE</strong> (Indo-Universal Collaboration for Engineering Education) connects engineering institutions across India to push for more applied, relevant technical education.
+                  <strong className="text-zinc-900 dark:text-zinc-200 font-semibold">IUCEE</strong> (Indo-Universal Collaboration for Engineering Education) connects engineering institutions across India to push for more applied, relevant technical education.
                 </p>
                 <p>
-                  <strong className="text-zinc-200 font-semibold">EWB</strong> (Engineers Without Borders) means our projects are humanitarian in focus — engineering applied where it's actually needed, not where it's commercially safe.
+                  <strong className="text-zinc-900 dark:text-zinc-200 font-semibold">EWB</strong> (Engineers Without Borders) means our projects are humanitarian in focus — engineering applied where it's actually needed, not where it's commercially safe.
                 </p>
                 <p>
                   Our HITAM chapter sits at the intersection: academic structure from IUCEE, field-application from EWB's model.
@@ -365,10 +375,21 @@ export default function Home() {
       {/* STATS */}
       <section className="py-20 border-t border-zinc-200 dark:border-white/10">
         <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Reveal delay={0}><StatBlock value="10+" label="Projects shipped" sub="Most still operational in the field" /></Reveal>
-            <Reveal delay={80}><StatBlock value="50+" label="Active members" sub="Across five engineering disciplines" /></Reveal>
-            <Reveal delay={160}><StatBlock value="3 yrs" label="Chapter history" sub="Operating continuously since 2022" /></Reveal>
+          {/* Arrow shape: heights go short → med → tall → med → short, aligned at bottom */}
+          <div className="hidden lg:flex items-end gap-4">
+            <Reveal delay={0}   className="flex-1"><StatBlock value="5+"    label="Projects we are working on"    sub="Most still operational in the field"          className="h-[148px]" /></Reveal>
+            <Reveal delay={80}  className="flex-1"><StatBlock value="20+"   label="Projects we worked on"           sub="Completed and handed off to communities"       className="h-[184px]" /></Reveal>
+            <Reveal delay={160} className="flex-1"><StatBlock value="5+"    label="Research papers we worked on"    sub="Published across conferences and journals"     className="h-[220px]" /></Reveal>
+            <Reveal delay={240} className="flex-1"><StatBlock value="100+"  label="Active members"                  sub="And counting, across five engineering disciplines" className="h-[184px]" /></Reveal>
+            <Reveal delay={320} className="flex-1"><StatBlock value="6 yrs" label="Chapter history"                 sub="Operating continuously since 2019"            className="h-[148px]" /></Reveal>
+          </div>
+          {/* Mobile/tablet fallback: simple 2-col grid */}
+          <div className="grid lg:hidden grid-cols-1 sm:grid-cols-2 gap-4">
+            <Reveal delay={0}><StatBlock value="5+"    label="Projects we are working on"    sub="Most still operational in the field" /></Reveal>
+            <Reveal delay={80}><StatBlock value="20+"  label="Projects we worked on"          sub="Completed and handed off to communities" /></Reveal>
+            <Reveal delay={160}><StatBlock value="5+"  label="Research papers we worked on"   sub="Published across conferences and journals" /></Reveal>
+            <Reveal delay={240}><StatBlock value="100+" label="Active members"                 sub="And counting, across five engineering disciplines" /></Reveal>
+            <Reveal delay={320}><StatBlock value="6 yrs" label="Chapter history"               sub="Operating continuously since 2019" /></Reveal>
           </div>
         </div>
       </section>
@@ -397,9 +418,9 @@ export default function Home() {
                   <ProjectCard
                     number={String(i + 1).padStart(2, "0")}
                     title={project.title}
-                    description={project.teaser}
-                    tags={project.techStack.slice(0, 2)}
-                    href={`/projects/${project.id}`}
+                    description={project.shortDescription}
+                    tags={project.tech.slice(0, 2)}
+                    href="/projects"
                   />
                 </div>
               </Reveal>

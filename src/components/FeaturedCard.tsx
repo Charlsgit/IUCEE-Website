@@ -20,14 +20,14 @@ export default function FeaturedCard({ event }: FeaturedCardProps) {
       className="col-span-full group relative flex flex-col md:flex-row min-h-[360px] rounded-3xl border border-emerald-500/30 bg-zinc-50 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-emerald-500/60 dark:bg-[#0a0a0a] dark:border-emerald-500/20 dark:hover:border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.05)] hover:shadow-[0_0_60px_rgba(16,185,129,0.1)]"
     >
       {/* Featured Image Area */}
-      <div className="relative w-full md:w-5/12 h-64 md:h-auto bg-black border-b md:border-b-0 md:border-r border-emerald-500/20 overflow-hidden flex-shrink-0">
+      <div className="relative w-full md:w-5/12 min-h-[420px] md:min-h-full bg-black border-b md:border-b-0 md:border-r border-emerald-500/20 overflow-hidden flex-shrink-0 flex items-center justify-center">
         {event.poster ? (
           <>
             <Image
               src={event.poster}
               alt={`${event.title} poster`}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-contain"
             />
             {/* Overlay to keep UI elements legible */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/30" />

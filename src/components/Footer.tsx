@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin, Twitter, Youtube, ArrowRight } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Phone } from "lucide-react";
+import NewsletterStrip from "./NewsletterStrip";
 
 const DiscordIcon = ({ size = 24 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -8,11 +9,20 @@ const DiscordIcon = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 
+const FacebookIcon = ({ size = 24 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+  </svg>
+);
+
 export default function Footer() {
   return (
     <footer className="bg-zinc-50 border-t border-zinc-200 dark:bg-[#020202] dark:border-white/10 transition-colors duration-300">
       <div className="container mx-auto max-w-7xl px-6 py-16 lg:py-20">
-        
+
+        {/* Newsletter Strip */}
+        <NewsletterStrip />
+
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
 
@@ -33,26 +43,26 @@ export default function Footer() {
             {/* Glass tab behind IUCEE letters */}
             <div className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-white/50 dark:bg-white/[0.08] border border-white/60 dark:border-white/15 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-inset ring-white/30 dark:ring-white/5 transition-all duration-300">
               {[
-                { id: "twitter", letter: "I", color: "#0099D6", icon: <Twitter size={16} /> },
-                { id: "instagram", letter: "U", color: "#D641B9", icon: <Instagram size={16} /> },
-                { id: "youtube", letter: "C", color: "#D42121", icon: <Youtube size={16} /> },
-                { id: "linkedin", letter: "E", color: "#087EB1", icon: <Linkedin size={16} /> },
-                { id: "discord", letter: "E", color: "#7289da", icon: <DiscordIcon size={16} /> },
+                { id: "facebook", letter: "I", color: "#1877F2", href: "https://www.facebook.com/share/1CgojJiDAy/", icon: <FacebookIcon size={16} /> },
+                { id: "instagram", letter: "U", color: "#D641B9", href: "https://www.instagram.com/iucee.ewb.hitam?igsh=cTkwOXc1cWRweXg5", icon: <Instagram size={16} /> },
+                { id: "youtube", letter: "C", color: "#D42121", href: "https://youtube.com/@ewbhitam2001?si=fREnsa3FaPEweRG3", icon: <Youtube size={16} /> },
+                { id: "linkedin", letter: "E", color: "#087EB1", href: "https://www.linkedin.com/in/ewbhitam?utm_source=share_via&utm_content=profile&utm_medium=member_android", icon: <Linkedin size={16} /> },
+                { id: "discord", letter: "E", color: "#7289da", href: "https://discord.gg/WtJeaRV3", icon: <DiscordIcon size={16} /> },
               ].map((social) => (
-                <a key={social.id} href="#" aria-label={social.id} className="group relative w-10 h-10 block" style={{ perspective: "1000px" }}>
-                  <div 
+                <a key={social.id} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.id} className="group relative w-10 h-10 block" style={{ perspective: "1000px" }}>
+                  <div
                     className="w-full h-full transition-transform duration-500 group-hover:[transform:rotateY(180deg)] rounded-full"
                     style={{ transformStyle: "preserve-3d" }}
                   >
                     {/* Front: Letter */}
-                    <div 
+                    <div
                       className="absolute inset-0 flex items-center justify-center rounded-full text-white text-lg font-bold cursor-pointer"
                       style={{ backfaceVisibility: "hidden", backgroundColor: social.color, fontFamily: "var(--font-nunito), sans-serif" }}
                     >
                       {social.letter}
                     </div>
                     {/* Back: Social Icon */}
-                    <div 
+                    <div
                       className="absolute inset-0 flex items-center justify-center rounded-full text-white cursor-pointer"
                       style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", backgroundColor: social.color }}
                     >
@@ -100,27 +110,64 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
+          {/* Column 4: Contact Us */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-bold text-zinc-900 dark:text-white mb-5">Stay Updated</h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4 leading-relaxed">
-              Subscribe to get updates on our field deployments and new projects.
-            </p>
-            <form className="flex flex-col gap-3" action="#">
-              <input
-                type="email"
-                placeholder="email@example.com"
-                className="w-full px-4 py-3 rounded-xl bg-white border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 transition-all dark:bg-[#0a0a0a] dark:border-white/10 dark:text-white dark:placeholder:text-zinc-600 dark:focus:ring-emerald-500/20 dark:focus:border-emerald-500"
-                required
-              />
-              <button
-                type="button"
-                className="group flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-all active:scale-[0.98]"
-              >
-                Subscribe
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-              </button>
-            </form>
+            <h3 className="text-sm font-bold text-zinc-900 dark:text-white mb-5">Contact Us</h3>
+            <ul className="space-y-5">
+
+              {/* Current President */}
+              <li>
+                <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-emerald-600 dark:text-emerald-400 mb-1">Current President</p>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-white leading-tight mb-1">Ameena Begum Mahek</p>
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+919966864664" className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400 transition-colors">
+                    <Phone size={11} />
+                    +91 99668 64664
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/ameena-begum-mahek-01a148329/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-[#0A66C2] dark:text-zinc-400 dark:hover:text-[#0A66C2] transition-colors"
+                  >
+                    <Linkedin size={11} />
+                    LinkedIn Profile
+                  </a>
+                </div>
+              </li>
+
+              {/* Assistant Dean */}
+              <li>
+                <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-emerald-600 dark:text-emerald-400 mb-1">Assistant Dean IIIC</p>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-white leading-tight mb-1">Dr Kasarla Satish Reddy</p>
+                <a href="tel:+919700938400" className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400 transition-colors">
+                  <Phone size={11} />
+                  +91 97009 38400
+                </a>
+              </li>
+
+              {/* Faculty Mentor */}
+              <li>
+                <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-emerald-600 dark:text-emerald-400 mb-1">Faculty Mentor</p>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-white leading-tight mb-1">Santosh Naik</p>
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+919980299366" className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400 transition-colors">
+                    <Phone size={11} />
+                    +91 99802 99366
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/santosh-naik-8b144160/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-[#0A66C2] dark:text-zinc-400 dark:hover:text-[#0A66C2] transition-colors"
+                  >
+                    <Linkedin size={11} />
+                    LinkedIn Profile
+                  </a>
+                </div>
+              </li>
+
+            </ul>
           </div>
         </div>
 

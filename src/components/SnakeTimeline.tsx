@@ -5,15 +5,31 @@ import { motion } from "framer-motion";
 import { 
   Flag, Zap, Factory, Code, BookOpen, Rocket, FileText, 
   Lightbulb, Upload, Brain, School, Leaf, Globe, 
-  Wrench, Trophy, Sprout, Medal, Cpu, Droplets,
-  Users, Target, Building, Network, Mic, Bot, PartyPopper, GraduationCap, ArrowRight, Hourglass
+  Wrench, Trophy, Sprout, Medal, Cpu, Droplets, PartyPopper, Hourglass, Users
 } from "lucide-react";
+import RightSideGrid from "./RightSideGrid";
+import { MaskedAvatars } from "@/components/ui/masked-avatars";
+
+const FIRST_TEAM_AVATARS = [
+  { avatar: "/images/first-team/aashish.jpg", name: "Aashish" },
+  { avatar: "/images/first-team/bhargav.jpg", name: "Bhargav" },
+  { avatar: "/images/first-team/nagarjuna.jpg", name: "Nagarjuna" },
+  { avatar: "/images/first-team/pranay.jpg", name: "Pranay" },
+  { avatar: "/images/first-team/purna.jpg", name: "Purna" },
+];
+
 
 const timelineEvents = [
   {
     id: "01", date: "AUG 2019", title: "THE BEGINNING",
     desc: "Chapter established as a non-profit for community engineering.",
     icon: Flag
+  },
+  {
+    id: "founder", date: "2019", title: "THE FIRST TEAM",
+    desc: "The founding members and pioneers who laid the core foundation.",
+    icon: Users,
+    link: "/history/first-team"
   },
   {
     id: "02", date: "NOV 8-9, 2024", title: "INNOFIESTA 2024",
@@ -106,85 +122,21 @@ const timelineEvents = [
     icon: Droplets
   },
   {
-    id: "20", date: "APR 10, 2026", title: "FRESHERS",
+    id: "present-team", date: "2026", title: "PRESENT TEAM",
+    desc: "Meet the current members driving our chapter's mission forward.",
+    icon: Users,
+    link: "/team"
+  },
+  {
+    id: "20", date: "APR 10, 2026", title: "IGNITE 2026",
     desc: "Welcoming the incoming batch to the chapter.",
     icon: PartyPopper
   },
   {
-    id: "21", date: "APR 24, 2026", title: "SDG INTRODUCTION",
-    desc: "Introduction to Sustainable Development Goals and our approach.",
-    icon: Target
-  },
-  {
-    id: "22", date: "MAY 1, 2026", title: "DT EXPO",
-    desc: "Design Thinking exhibition showcasing student projects.",
-    icon: Lightbulb
-  },
-  {
-    id: "23", date: "JUN 19, 2026", title: "NGO VISIT",
-    desc: "Visit to local NGOs to understand grassroots challenges.",
-    icon: Building
-  },
-  {
-    id: "24", date: "JUN 26, 2026", title: "INDUSTRIAL VISIT",
-    desc: "Field visit to understand practical industrial applications.",
-    icon: Factory
-  },
-  {
-    id: "25", date: "JUL 4, 2026", title: "SYNERGY",
-    desc: "Interactive session fostering teamwork and collaborative problem-solving.",
-    icon: Network
-  },
-  {
-    id: "26", date: "AUG 14, 2026", title: "INDUSTRIAL VISIT",
-    desc: "Continued exposure to industry practices and operations.",
-    icon: Factory
-  },
-  {
-    id: "27", date: "SEP 11, 2026", title: "ZERO TO PAPER RESEARCH WORKSHOP",
-    desc: "Comprehensive guide to writing and publishing research papers.",
-    icon: BookOpen
-  },
-  {
-    id: "28", date: "SEP 25, 2026", title: "PAPER PRESENTATION",
-    desc: "Students presenting their research and project findings.",
-    icon: Mic
-  },
-  {
-    id: "29", date: "OCT 9, 2026", title: "AI FOR EVERYONE WORKSHOP",
-    desc: "Democratizing AI knowledge and hands-on applications.",
-    icon: Bot
-  },
-  {
-    id: "30", date: "NOV 13-14, 2026", title: "INNOFIESTA-2K26",
-    desc: "Next edition of the flagship multidisciplinary college fest.",
-    icon: Zap
-  },
-  {
-    id: "31", date: "DEC 5, 2026", title: "ALUMNI INTERACTION",
-    desc: "Engaging with chapter alumni to share insights and networking.",
-    icon: Users
-  },
-  {
-    id: "32", date: "FIRST WEEK 2027", title: "IASF-2027",
-    desc: "Participation in the International Action Student Forum 2027.",
-    icon: Globe
-  },
-  {
-    id: "33", date: "JAN 29, 2027", title: "IUCEE-EWB HITAM CHAPTER FAREWELL",
-    desc: "Farewell ceremony celebrating the graduating chapter members.",
-    icon: GraduationCap
-  },
-  {
-    id: "34", date: "FEB 26, 2027", title: "INVESTITURE CEREMONY",
-    desc: "Handover of leadership and inducting the new core team.",
-    icon: Medal
-  },
-  {
-    id: "35", date: "FUTURE", title: "TO BE CONTINUED...",
+    id: "21", date: "FUTURE", title: "TO BE CONTINUED...",
     desc: "Our journey of impact and innovation never stops.",
     icon: Hourglass
-  }
+  },
 ];
 
 export default function SnakeTimeline() {
@@ -193,6 +145,38 @@ export default function SnakeTimeline() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const generatePath = () => {
+    const numItems = timelineEvents.length;
+    const numRows = Math.ceil(numItems / 4);
+    let path = "M 200 250";
+    
+    for (let r = 0; r < numRows; r++) {
+      const y = 250 + r * 400;
+      const isEven = r % 2 === 0;
+      const itemsInRow = (r === numRows - 1) ? (numItems - r * 4) : 4;
+      
+      if (isEven) {
+        const endX = 200 + (itemsInRow - 1) * 266.66;
+        if (r === numRows - 1) {
+           path += ` L ${endX} ${y}`;
+        } else {
+           path += ` L 1000 ${y} A 200 200 0 0 1 1000 ${y + 400}`;
+        }
+      } else {
+        const endX = 1000 - (itemsInRow - 1) * 266.66;
+        if (r === numRows - 1) {
+           path += ` L ${endX} ${y}`;
+        } else {
+           path += ` L 200 ${y} A 200 200 0 0 0 200 ${y + 400}`;
+        }
+      }
+    }
+    return path;
+  };
+
+  const dynamicPath = generatePath();
+  const svgHeight = Math.max(1000, Math.ceil(timelineEvents.length / 4) * 400 + 400);
 
   const cssContent = `
     @keyframes cyberSnakeStreak {
@@ -221,20 +205,14 @@ export default function SnakeTimeline() {
   `;
 
   return (
-    <section className="relative w-full bg-white overflow-hidden py-24 font-sans mx-auto dark:bg-transparent">
+    <section className="relative w-full bg-zinc-50 overflow-hidden py-24 font-sans mx-auto dark:bg-[#050505]">
       <style dangerouslySetInnerHTML={{ __html: cssContent }} />
       
-      {/* 40px Cyber Grid Pattern */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.03] z-0" 
-        style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      />
+      {/* Perspective Grid Background */}
+      <RightSideGrid />
 
-      {/* Radial Emerald Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-100 rounded-full blur-[150px] pointer-events-none z-0" />
+      {/* Content wrapper with pointer-events-none to let hover through to background */}
+      <div className="relative z-20 pointer-events-none h-full w-full">
 
       {/* Header */}
       <div className="relative z-10 text-center mb-16 px-4">
@@ -261,11 +239,14 @@ export default function SnakeTimeline() {
         
         {/* Desktop View: Multi-row Vertical Winding SVG Map */}
         <div className="hidden lg:block relative w-full overflow-x-auto hide-scrollbar pb-24">
-          <div className="relative w-[1200px] min-w-[1200px] mx-auto h-[3800px] mt-16">
+          <div 
+            className="relative w-[1200px] min-w-[1200px] mx-auto mt-16"
+            style={{ height: `${svgHeight}px` }}
+          >
             
             {/* Base Static Track & Glowing Animated Overlay */}
             <div className="absolute inset-0 pointer-events-none">
-              <svg viewBox="0 0 1200 3800" preserveAspectRatio="none" className="w-full h-full overflow-visible">
+              <svg viewBox={`0 0 1200 ${svgHeight}`} preserveAspectRatio="none" className="w-full h-full overflow-visible">
                 <defs>
                   <filter id="neonGlowCyber" x="-20%" y="-20%" width="140%" height="140%">
                     <feGaussianBlur stdDeviation="8" result="blur" />
@@ -283,7 +264,7 @@ export default function SnakeTimeline() {
                 
                 {/* Track Ghost Line */}
                 <path 
-                  d="M 200 250 L 1000 250 A 200 200 0 0 1 1000 650 L 200 650 A 200 200 0 0 0 200 1050 L 1000 1050 A 200 200 0 0 1 1000 1450 L 200 1450 A 200 200 0 0 0 200 1850 L 1000 1850 A 200 200 0 0 1 1000 2250 L 200 2250 A 200 200 0 0 0 200 2650 L 1000 2650 A 200 200 0 0 1 1000 3050 L 200 3050 A 200 200 0 0 0 200 3450 L 1200 3450"
+                  d={dynamicPath}
                   stroke="rgba(16, 185, 129, 0.15)"
                   strokeWidth="6"
                   fill="none"
@@ -293,7 +274,7 @@ export default function SnakeTimeline() {
                 {/* Flowing Laser Line */}
                 {mounted && (
                   <path 
-                    d="M 200 250 L 1000 250 A 200 200 0 0 1 1000 650 L 200 650 A 200 200 0 0 0 200 1050 L 1000 1050 A 200 200 0 0 1 1000 1450 L 200 1450 A 200 200 0 0 0 200 1850 L 1000 1850 A 200 200 0 0 1 1000 2250 L 200 2250 A 200 200 0 0 0 200 2650 L 1000 2650 A 200 200 0 0 1 1000 3050 L 200 3050 A 200 200 0 0 0 200 3450 L 1200 3450"
+                    d={dynamicPath}
                     stroke="url(#cyberGradient)"
                     strokeWidth="6"
                     fill="none"
@@ -316,7 +297,7 @@ export default function SnakeTimeline() {
               // Cards alternate strictly by column to guarantee no vertical overlapping
               const align = col_idx % 2 === 0 ? "top" : "bottom";
               
-              const isCompleted = index < 19;
+              const isCompleted = index < 21;
               const theme = isCompleted ? {
                  nodeBorder: "border-emerald-500 shadow-[0_0_15px_#10b981]",
                  nodeInner: "bg-emerald-300",
@@ -340,7 +321,7 @@ export default function SnakeTimeline() {
               return (
                 <motion.div
                   key={event.id}
-                  className="absolute flex items-center justify-center group z-10"
+                  className="absolute flex items-center justify-center group z-10 pointer-events-auto"
                   style={{
                     top: `${y}px`,
                     left: `${x}px`,
@@ -359,14 +340,21 @@ export default function SnakeTimeline() {
 
                      {/* Glassmorphism Data Card */}
                      <div 
-                       className={`absolute w-[260px] h-[210px] p-5 bg-white border border-zinc-200 rounded-2xl shadow-md transition-all duration-300 group-hover:-translate-y-1 ${theme.cardHover} dark:bg-[#0a0a0a] dark:border-white/10 flex flex-col items-start z-40 origin-center left-1/2 -translate-x-1/2 ${
+                       onClick={() => "link" in event && event.link && window.open((event as any).link, "_blank")}
+                       className={`absolute w-[260px] h-auto min-h-[160px] p-5 bg-white border border-zinc-200 rounded-2xl shadow-md transition-all duration-300 group-hover:-translate-y-1 ${theme.cardHover} dark:bg-[#0a0a0a] dark:border-white/10 flex flex-col items-start z-40 origin-center left-1/2 -translate-x-1/2 ${
                          align === 'top' ? 'bottom-full mb-6' : 'top-full mt-6'
-                       }`}
+                       } ${"link" in event && event.link ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
                      >
                         {/* Connection Tether */}
                         <div className={`absolute left-1/2 -translate-x-1/2 w-[2px] h-6 bg-gradient-to-b ${
                           align === 'top' ? `from-transparent ${theme.tetherTop} -bottom-6` : `${theme.tetherBottom} to-transparent -top-6`
                         }`} />
+
+                        {event.id === "founder" && (
+                          <div className="mb-4">
+                            <MaskedAvatars avatars={FIRST_TEAM_AVATARS} />
+                          </div>
+                        )}
 
                         <div className="flex items-start space-x-3 mb-3 w-full shrink-0">
                           <span className={`p-2 rounded-lg transition-colors shrink-0 ${theme.iconBg}`}>
@@ -375,7 +363,7 @@ export default function SnakeTimeline() {
                           <span className={`${theme.dateText} font-mono text-[11px] tracking-widest font-semibold drop-shadow-sm pt-2`}>{event.date}</span>
                         </div>
                         <h3 className={`text-zinc-900 font-bold text-base leading-tight mb-2 uppercase transition-colors dark:text-white shrink-0 line-clamp-2 w-full ${theme.titleHover}`}>{event.title}</h3>
-                        <p className="text-zinc-500 text-xs leading-relaxed dark:text-zinc-400 flex-grow w-full overflow-hidden line-clamp-3">{event.desc}</p>
+                        <p className="text-zinc-500 text-xs leading-relaxed dark:text-zinc-400 w-full overflow-hidden line-clamp-3">{event.desc}</p>
                      </div>
                   </div>
                 </motion.div>
@@ -392,7 +380,7 @@ export default function SnakeTimeline() {
 
           <div className="flex flex-col space-y-10 relative z-10 w-full">
                 {timelineEvents.map((event, index) => {
-                  const isCompleted = index < 19;
+                  const isCompleted = index < 21;
                   const theme = isCompleted ? {
                      nodeBorder: "border-emerald-500 shadow-[0_0_15px_#10b981]",
                      nodeInner: "bg-emerald-300",
@@ -414,7 +402,7 @@ export default function SnakeTimeline() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-10%" }}
                       transition={{ duration: 0.5, delay: 0.1 }}
-                      className="relative pl-[72px] sm:pl-[96px] pr-2 group"
+                      className="relative pl-[72px] sm:pl-[96px] pr-2 group pointer-events-auto"
                     >
                       {/* Node Target */}
                       <div className={`absolute left-[38px] sm:left-[50px] top-8 w-6 h-6 rounded-full bg-white border-[3px] ${theme.nodeBorder} animate-pulse flex items-center justify-center -translate-x-1/2 -translate-y-1/2`}>
@@ -422,7 +410,15 @@ export default function SnakeTimeline() {
                       </div>
 
                       {/* Mobile Glass Card */}
-                      <div className={`p-6 bg-white border border-zinc-200 rounded-2xl shadow-md transition-transform duration-300 hover:-translate-y-1 ${theme.cardHover} dark:bg-[#0a0a0a] dark:border-white/10 flex flex-col items-start w-full relative z-10`}>
+                      <div 
+                        onClick={() => "link" in event && event.link && window.open((event as any).link, "_blank")}
+                        className={`p-6 bg-white border border-zinc-200 rounded-2xl shadow-md transition-transform duration-300 hover:-translate-y-1 ${theme.cardHover} dark:bg-[#0a0a0a] dark:border-white/10 flex flex-col items-start w-full relative z-10 ${"link" in event && event.link ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+                      >
+                          {event.id === "founder" && (
+                            <div className="mb-4">
+                              <MaskedAvatars avatars={FIRST_TEAM_AVATARS} />
+                            </div>
+                          )}
                           <div className="flex items-start space-x-3 mb-3 w-full">
                              <span className={`p-2 rounded-lg shrink-0 ${theme.iconBg}`}>
                                <event.icon size={18} strokeWidth={2.5} />
@@ -440,25 +436,7 @@ export default function SnakeTimeline() {
 
       </div>
 
-      {/* Cyber Stats Footer Component */}
-      <div className="relative z-20 flex flex-wrap justify-center gap-6 md:gap-12 pt-8 pb-8 px-4 w-full">
-         {[
-           { value: "11+", label: "Projects" },
-           { value: "80+", label: "Members" },
-           { value: "₹20K+", label: "Funding" }
-         ].map((stat, i) => (
-           <motion.div 
-             key={i}
-             initial={{ opacity: 0, scale: 0.8 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             transition={{ delay: i * 0.1 + 0.3, type: 'spring' }}
-             className="flex flex-col items-center p-6 bg-white rounded-2xl border border-zinc-200 shadow-sm hover:border-emerald-500/30 hover:-translate-y-1 transition-all duration-300 min-w-[160px] group dark:bg-[#0a0a0a] dark:border-white/10"
-           >
-              <span className="text-4xl md:text-5xl font-black text-zinc-900 group-hover:text-emerald-600 group-hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.5)] transition-all mb-2 dark:text-white">{stat.value}</span>
-              <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase">{stat.label}</span>
-           </motion.div>
-         ))}
+
       </div>
     </section>
   );

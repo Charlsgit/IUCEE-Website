@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python backend
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/local_dev.db
+backend/local_testing.db
+
+# Temp / scratch files
+temp_compendium/
+temp_compendium.zip
+temp_docx/
+compendium.txt
+merge_projects.js
+migrate_projects.js
+parse_compendium.ps1

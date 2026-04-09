@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: iucee-ewb-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NEON_DATABASE_URL
+        sync: false   # Set this in the Render dashboard — never commit the real URL
+      - key: RESEND_API_KEY
+        sync: false
+      - key: SECRET_ADMIN_KEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://your-vercel-domain.vercel.app  # Update after Vercel deploy
+    healthCheckPath: /

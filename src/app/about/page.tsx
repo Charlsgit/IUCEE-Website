@@ -3,52 +3,57 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { Briefcase, Users, Zap, ArrowRight } from "lucide-react";
-import CoreTeamCarousel from "@/components/CoreTeamCarousel";
 import PerspectiveGrid from "@/components/PerspectiveGrid";
-import TestimonialsCard from "@/components/TestimonialsCard";
-
+import { TestimonialsCard } from "@/components/ui/testimonials-card";
 const ABOUT_TESTIMONIALS = [
   {
     id: 1,
+    title: "Architha Reddy Pabbathi",
+    subtitle: "Ex-President",
     description: "During my tenure in IUCEE–EWB HITAM 24-25, I developed strong ownership, accountability, and the ability to manage responsibilities under pressure. More than experience, it has been a defining part of my student life — giving me a sense of responsibility, a strong community, a family, and a foundation for my personal and professional growth.",
-    name: "Architha Reddy Pabbathi",
-    role: "EX-PRESIDENT",
-    image: "/images/team/Testimony_PIcs/Architha_Akka.jpeg"
+    image: "/images/team/Testimony_PIcs/Architha_Akka.jpeg",
+    linkedin: "https://www.linkedin.com/in/architha-reddy-pabbathi/"
   },
   {
     id: 2,
+    title: "Harsith Gourishetti",
+    subtitle: "Ex-Treasurer",
     description: "My tenure as Treasurer was a transformative experience in professional accountability and leadership. I developed essential skills in event management, high-pressure decision-making, and professional communication while leveraging the IUCEE network to build meaningful connections.",
-    name: "Harsith Gourishetti",
-    role: "EX-TREASURER",
-    image: "/images/team/Testimony_PIcs/Harshit_Anna.jpeg"
+    image: "/images/team/Testimony_PIcs/Harshit_Anna.jpeg",
+    linkedin: "https://www.linkedin.com/in/harsith-gourishetti/"
   },
   {
     id: 3,
+    title: "Sai Kumar",
+    subtitle: "Ex-Project Manager",
     description: "Being part of this chapter allowed me to apply my skills to real-world challenges and grow as a leader. We've seen incredible innovation from this group. Their ability to deliver practical solutions to complex problems is unmatched.",
-    name: "Sai kumar",
-    role: "EX-PROJECT MANAGER",
-    image: "/images/team/Testimony_PIcs/SaiKUMARANNATRUE.jpeg"
+    image: "/images/team/Testimony_PIcs/SaiKUMARANNATRUE.jpeg",
+    linkedin: "https://www.linkedin.com/in/sai-kumar-lingaraju/"
   },
   {
     id: 4,
+    title: "Shaik Ruksana",
+    subtitle: "Ex-Secretary",
     description: "Serving as Secretary of the IUCEE–EWB HITAM Student Chapter was a formative engagement in discipline, ownership, and intent. It demanded both precision in execution and depth in perspective. My tenure was shaped by efforts to foster a more engaged, thoughtful, and socially attuned student ecosystem, while contributing meaningfully to the chapter's evolving direction. The experience remains a quiet but defining influence on how I approach responsibility, impact, and growth.",
-    name: "Shaik Ruksana",
-    role: "EX-SECRETARY",
-    image: "/images/team/Testimony_PIcs/RuksanaAkka.jpeg"
+    image: "/images/team/Testimony_PIcs/a723ae11-9239-42d5-8e09-ee4b89f642ea.jpg",
+    imagePosition: "50% 18%",
+    linkedin: "https://www.linkedin.com/in/shaik-ruksana-a3a21b2ab/"
   },
   {
     id: 5,
+    title: "Aligeti Sharanya",
+    subtitle: "Ex-Lead R&D",
     description: "Being part of the IUCEE-EWB HITAM 2025-26 was a defining experience. I worked with research while guiding others, turning challenges into meaningful outcomes. It not only gave me valuable experience but also showed me different aspects of student life beyond academics. Grateful for a supportive team that made this journey truly impactful.",
-    name: "Aligeti Sharanya",
-    role: "EX-LEAD R&D",
-    image: "/images/team/Testimony_PIcs/SharanyaAkka.jpeg"
+    image: "/images/team/Testimony_PIcs/SharanyaAkka.jpeg",
+    linkedin: "https://www.linkedin.com/in/aligeti-sharanya/"
   },
   {
     id: 6,
-    description: "My tenure as Social Media Manager of the IUCEE EWB Student Chapter (2025–2026) was a highly enriching experience that strengthened my skills in digital communication and teamwork. Beginning as a PR volunteer during Innofiesta 2024, I gained valuable exposure to the organization's dynamic environment. Being entrusted with the newly created role of Social Media Manager allowed me to contribute to event promotions and enhance our digital presence. Despite challenges, including Innofiesta 2026, each experience added to my growth and professional confidence. I am grateful to have been part of this journey.",
-    name: "Vishnu Adari",
-    role: "EX-SOCIAL MEDIA MANAGER",
-    image: "/images/team/Testimony_PIcs/VishnuAnna.PNG"
+    title: "Vishnu Adari",
+    subtitle: "Ex-Social Media Manager",
+    description: "My tenure as Social Media Manager of the IUCEE EWB Student Chapter (2025–2026) was a highly enriching experience that strengthened my skills in digital communication and teamwork. Beginning as a PR volunteer during Innofiesta 2024, I gained valuable exposure to the organization's dynamic environment. Being entrusted with the newly created role of Social Media Manager allowed me to contribute to event promotions and enhance our digital presence.",
+    image: "/images/team/Testimony_PIcs/VishnuAnna.PNG",
+    linkedin: "https://www.linkedin.com/in/adari-vishnu-091131291/"
   }
 ];
 
@@ -105,11 +110,12 @@ export default function AboutPage() {
       {/* ── STATS ────────────────────────────────────────────────────── */}
       <section className="py-20 border-b border-zinc-100">
         <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
             {[
-              { icon: Briefcase, value: "10+", label: "Projects delivered", desc: "Spanning IoT, energy, and agriculture" },
-              { icon: Users, value: "50+", label: "Active members", desc: "Across 5 engineering disciplines" },
-              { icon: Zap, value: "3 yrs", label: "Chapter history", desc: "Founded in 2022 at HITAM" },
+              { icon: Briefcase, value: "5+", label: "Projects we are working on", desc: "Spanning IoT, energy, and agriculture" },
+              { icon: Users, value: "100+", label: "Active members", desc: "And counting, across 5 engineering disciplines" },
+              { icon: Zap, value: "6 yrs", label: "Chapter history", desc: "Founded in 2019 at HITAM" },
+              { icon: Briefcase, value: "5+", label: "Research papers we worked on", desc: "Published across conferences and journals" },
             ].map((s, i) => (
               <Reveal key={s.label} delay={i * 100}>
                 <div className="group p-8 rounded-3xl bg-zinc-50 border border-zinc-200 hover:border-emerald-600/30 transition-all duration-400 dark:bg-[#0a0a0a] dark:border-white/10 dark:hover:border-emerald-500/30">
@@ -169,12 +175,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── CORE TEAM CAROUSEL ───────────────────────────────────────── */}
-      <section className="border-b border-zinc-100">
-        <Reveal>
-          <CoreTeamCarousel />
-        </Reveal>
-      </section>
 
       {/* ── TESTIMONIALS ─────────────────────────────────────────────── */}
       <section className="py-24 border-b border-zinc-100 bg-zinc-50/50">
